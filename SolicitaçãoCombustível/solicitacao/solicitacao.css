@@ -121,3 +121,13 @@ button:hover {
 .navbar a:hover {
     text-decoration: underline;
 }
+
+header{
+    text-align: right;
+    background-color: #0044cc;
+}
+
+header button{
+    width: auto;
+    background-color: transparent;
+}

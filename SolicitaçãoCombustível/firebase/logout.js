@@ -22,7 +22,6 @@ botaoLogout.addEventListener("click", function (event) {
     event.preventDefault();
 
     signOut(auth).then(() => {
-        alert('Saiu.');
         window.location.href = "../index.html";
     }).catch((error) => {
         alert('Erro ao sair:', error);
