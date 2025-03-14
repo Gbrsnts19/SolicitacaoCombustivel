@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/img/frangoAmericanoIcone.jpeg">
+    <title>Solicitação Combustível</title>
+    <script src="script.js"></script>
+    <script type="module" src="firebase/cadastro.js" defer></script>
+    <script type="module" src="firebase/login.js" defer></script>
+</head>
+<body>
+    <div class="container" id="container-cadastro">
+        <h2>Cadastro</h2>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="senha" placeholder="Senha" required>
+        <button id="botao-cadastro">Cadastrar</button>
+        <p>Já tem uma conta? <a href="#" onclick="mostrarLogin()">Faça login</a></p>
+    </div>
+
+    <div class="container" id="container-login" style="display: none;">
+        <h2>Login</h2>
+        <input type="email" id="login-email" placeholder="Email" required>
+        <input type="password" id="login-senha" placeholder="Senha" required>
+        <button id="botao-login" onclick="">Entrar</button>
+        <p>Não tem conta? <a href="#" onclick="mostrarCadastro()">Cadastre-se</a></p>
+
+    </div>
+
+
+</body>
+</html>
