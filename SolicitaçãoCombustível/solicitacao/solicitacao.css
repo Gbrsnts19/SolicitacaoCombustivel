@@ -98,36 +98,40 @@ button:hover {
     margin-top: 10px;
 }
 
-.navbar {
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #0044cc;
-    padding: 15px 20px;
+    background-color: #0044cc;
+    padding: 15px;
     color: white;
 }
 
-.navbar .options {
+.left-options,
+.right-options {
     display: flex;
-    gap: 20px;
+    gap: 20px; /* Espaço entre os links */
 }
 
-.navbar a {
+header a {
     color: white;
     text-decoration: none;
     font-weight: bold;
 }
 
-.navbar a:hover {
+header a:hover {
     text-decoration: underline;
 }
 
-header{
-    text-align: right;
-    background-color: #0044cc;
-}
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
 
-header button{
-    width: auto;
-    background-color: transparent;
+    .left-options,
+    .right-options {
+        flex-direction: column;
+        gap: 10px;
+    }
 }

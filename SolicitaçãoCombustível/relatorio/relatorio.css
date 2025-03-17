@@ -1,0 +1,172 @@
+/* Estilo global do body */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: white;
+    color: #333;
+    margin: 0;
+}
+
+/* Estilo do header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0044cc;
+    padding: 15px;
+    color: white;
+    margin-bottom: 25px;
+}
+
+.left-options,
+.right-options {
+    display: flex;
+    gap: 20px;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo do container */
+.container {
+    margin: auto;
+    padding: 20px;
+    max-width: 1200px;
+    width: 90%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Estilo da tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Cabeçalho de tabela */
+table th {
+    position: relative; /* Necessário para os ícones de ordenação */
+    background-color: #0044cc;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer; /* Indica que é clicável */
+    padding-right: 25px;
+}
+
+table th:hover {
+    background-color: #003399; /* Efeito ao passar o mouse */
+}
+
+/* Indicadores de ordenação */
+table th::after {
+    content: '⇅'; /* Ícone padrão para ordenar */
+    position: absolute;
+    right: 10px;
+    color: #fff;
+    font-size: 12px;
+}
+
+table th.ordenado-crescente::after {
+    content: '↑'; /* Ícone para ordenação crescente */
+}
+
+table th.ordenado-decrescente::after {
+    content: '↓'; /* Ícone para ordenação decrescente */
+}
+
+/* Zebra striping */
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilo dos botões de download */
+.btn-download {
+    background: linear-gradient(90deg, #4caf50, #81c784);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-download:hover {
+    background: linear-gradient(90deg, #388e3c, #66bb6a);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.btn-download:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo dos filtros */
+.filtros {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filtros input {
+    padding: 5px 10px;
+    font-size: 12px;
+    flex: 1 1 120px;
+    max-width: 150px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.botao-filtro button {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #0044cc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0;
+}
+
+.botao-filtro button:hover {
+    background-color: #003399;
+}

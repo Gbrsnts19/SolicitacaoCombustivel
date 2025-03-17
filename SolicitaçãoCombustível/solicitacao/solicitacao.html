@@ -6,23 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solicitação Combustível</title>
     <link rel="stylesheet" href="solicitacao.css">
+    <link rel="icon" type="image/png" href="../assets/img/frangoAmericanoIcone.jpeg">
     <script type="module" src="../firebase/logout.js" defer></script>
+    <script src="../script.js"></script>
+    <script type="module" src="../firebase/pdf.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
     <header>
-        <button id="botao-logout">Sair</button>
+        <div class="left-options">
+            <a id="botao-solicitacao" href="">Solicitação</a>
+            <a id="botao-relatorio" href="/SolicitaçãoCombustível/relatorio/relatorio.html">Relatório</a>
+        </div>
+        <div class="right-options">
+            <a id="botao-perfil" href="/SolicitaçãoCombustível/perfil/perfil.html">Perfil</a>
+            <a id="botao-logout" href="">Sair</a>
+        </div>
     </header>
-    <div class="navbar" id="navbar">
-        <div class="options">
-            <a href="#">Solicitação</a>
-            <a href="#">Relatório</a>
-        </div>
-        <div class="perfil">
-            <a href="#">Perfil</a> | <a href="#" onclick="sair()">Sair</a>
-        </div>
-    </div>
 
     <div class="container" id="container-solicitacao">
         <h2>Solicitação de Combustível</h2>
@@ -78,8 +79,6 @@
             <button onclick="enviarEmail()">Enviar por E-mail</button>
         </div>
     </div>
-
-    <script src="../script.js"></script>
 </body>
 
 </html>

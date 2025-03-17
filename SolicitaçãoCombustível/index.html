@@ -13,21 +13,41 @@
 <body>
     <div class="container" id="container-cadastro">
         <h2>Cadastro</h2>
+        <input type="text" id="nome-completo" placeholder="Nome Completo" required>
         <input type="email" id="email" placeholder="Email" required>
         <input type="password" id="senha" placeholder="Senha" required>
         <button id="botao-cadastro">Cadastrar</button>
         <p>Já tem uma conta? <a href="#" onclick="mostrarLogin()">Faça login</a></p>
-    </div>
+        <p><a href="#" id="esqueci-senha-link-cadastro">Esqueci minha senha</a></p>
+    </div>    
 
     <div class="container" id="container-login" style="display: none;">
         <h2>Login</h2>
         <input type="email" id="login-email" placeholder="Email" required>
         <input type="password" id="login-senha" placeholder="Senha" required>
-        <button id="botao-login" onclick="">Entrar</button>
+        <button id="botao-login">Entrar</button>
         <p>Não tem conta? <a href="#" onclick="mostrarCadastro()">Cadastre-se</a></p>
-
+        <p><a href="#" id="esqueci-senha-link-login">Esqueci minha senha</a></p>
+    </div>
+    
+    <div class="modal" id="modal-esqueci-senha-cadastro" style="display: none;">
+        <div class="modal-content">
+            <h3>Redefinir Senha</h3>
+            <p>Digite seu email para receber um link de redefinição de senha:</p>
+            <input type="email" id="email-redefinir-senha-cadastro" placeholder="Email" required>
+            <button id="enviar-redefinicao-cadastro">Enviar</button>
+            <button id="fechar-modal-cadastro">Cancelar</button>
+        </div>
     </div>
 
-
+    <div class="modal" id="modal-esqueci-senha-login" style="display: none;">
+        <div class="modal-content">
+            <h3>Redefinir Senha</h3>
+            <p>Digite seu email para receber um link de redefinição de senha:</p>
+            <input type="email" id="email-redefinir-senha-login" placeholder="Email" required>
+            <button id="enviar-redefinicao-login">Enviar</button>
+            <button id="fechar-modal-login">Cancelar</button>
+        </div>
+    </div>
 </body>
 </html>

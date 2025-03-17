@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="perfil.css">
+    <script type="module" src="../firebase/logout.js" defer></script>
+    <script type="module" src="/SolicitaçãoCombustível/perfil/perfil.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="left-options">
+            <a id="botao-solicitacao" href="/SolicitaçãoCombustível/solicitacao/solicitacao.html">Solicitação</a>
+            <a id="botao-relatorio" href="/SolicitaçãoCombustível/relatorio/relatorio.html">Relatório</a>
+        </div>
+        <div class="right-options">
+            <a id="botao-perfil" href="#">Perfil</a>
+            <a id="botao-logout" href="#">Sair</a>
+        </div>
+    </header>    
+
+    <div class="container">
+        <h2>Informações do Usuário</h2>
+        <form id="form-perfil">
+            <div>
+                <label for="nome-completo">Nome Completo:</label>
+                <input type="text" id="nome-completo" placeholder="Seu nome completo" />
+            </div>
+    
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Seu email" />
+            </div>
+    
+            <div>
+                <label for="senha-antiga">Senha Atual:</label>
+                <input type="password" id="senha-antiga" placeholder="Digite sua senha atual" />
+            </div>
+    
+            <div>
+                <label for="nova-senha">Nova Senha:</label>
+                <input type="password" id="nova-senha" placeholder="Digite sua nova senha" />
+            </div>
+    
+            <button type="button" id="salvar-alteracoes">Salvar Alterações</button>
+        </form>
+    </div>    
+</body>
+
+</html>

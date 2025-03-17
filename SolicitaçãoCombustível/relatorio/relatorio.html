@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios</title>
+    <link rel="stylesheet" href="relatorio.css">
+    <script type="module" src="../firebase/logout.js" defer></script>
+    <script type="module" src="../script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="left-options">
+            <a id="botao-solicitacao" href="/SolicitaçãoCombustível/solicitacao/solicitacao.html">Solicitação</a>
+            <a id="botao-relatorio" href="#">Relatório</a>
+        </div>
+        <div class="right-options">
+            <a id="botao-perfil" href="/SolicitaçãoCombustível/perfil/perfil.html">Perfil</a>
+            <a id="botao-logout" href="#">Sair</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Relatórios de Solicitações</h2>
+        <div class="filtros">
+            <input type="text" id="filtro-condutor" placeholder="Filtrar por Condutor">
+            <input type="text" id="filtro-posto" placeholder="Filtrar por Posto">
+            <input type="text" id="filtro-modelo" placeholder="Filtrar por Modelo do Carro">
+            <input type="text" id="filtro-placa" placeholder="Filtrar por Placa do Carro">
+            <input type="text" id="filtro-produto" placeholder="Filtrar por Produto">
+            <input type="date" id="filtro-data-inicio" placeholder="Data Início">
+            <input type="date" id="filtro-data-fim" placeholder="Data Fim">
+        </div>
+        <div class="botao-filtro">
+            <button id="aplicar-filtro">Aplicar Filtros</button>
+        </div>
+        <table id="tabela-solicitacoes">
+            <thead>
+                <tr>
+                    <th data-column="numeroRequisicao">Número Requisição</th>
+                    <th data-column="condutor">Condutor</th>
+                    <th data-column="posto">Posto</th>
+                    <th data-column="modelo">Modelo</th>
+                    <th data-column="placa">Placa</th>
+                    <th data-column="produto">Produto</th>
+                    <th data-column="quantidade">Quantidade (LT)</th>
+                    <th data-column="km">KM</th>
+                    <th data-column="dataHora">Data/Hora</th>
+                    <th>PDF</th>
+                </tr>
+            </thead>          
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script type="module" src="relatorio.js"></script>
+</body>
+
+</html>
