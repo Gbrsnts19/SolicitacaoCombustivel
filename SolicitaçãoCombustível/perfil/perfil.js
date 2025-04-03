@@ -14,26 +14,22 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const formPerfil = document.querySelector("#form-perfil");
 
-// Elementos do formulário
 const nomeCompletoInput = document.querySelector("#nome-completo");
 const emailInput = document.querySelector("#email");
 const senhaAntigaInput = document.querySelector("#senha-antiga");
 const novaSenhaInput = document.querySelector("#nova-senha");
 const salvarAlteracoesBtn = document.querySelector("#salvar-alteracoes");
 
-// Carregar informações do usuário
 auth.onAuthStateChanged((user) => {
     if (user) {
-        // Exibir informações existentes
         nomeCompletoInput.value = user.displayName || "";
         emailInput.value = user.email || "";
     } else {
         alert("Usuário não autenticado. Redirecionando...");
-        window.location.href = "login.html"; // Redireciona para login se não autenticado
+        window.location.href = "login.html";
     }
 });
 
-// Atualizar informações do perfil
 salvarAlteracoesBtn.addEventListener("click", async () => {
     const user = auth.currentUser;
     const nomeCompleto = nomeCompletoInput.value;
@@ -42,23 +38,19 @@ salvarAlteracoesBtn.addEventListener("click", async () => {
     const novaSenha = novaSenhaInput.value;
 
     try {
-        // Reautenticar o usuário antes de alterações sensíveis
         const credential = EmailAuthProvider.credential(user.email, senhaAntiga);
         await reauthenticateWithCredential(user, credential);
 
-        // Atualizar o nome completo
         if (nomeCompleto && nomeCompleto !== user.displayName) {
             await updateProfile(user, { displayName: nomeCompleto });
             console.log("Nome atualizado com sucesso!");
         }
 
-        // Atualizar o email
         if (email && email !== user.email) {
             await updateEmail(user, email);
             console.log("Email atualizado com sucesso!");
         }
 
-        // Atualizar a senha
         if (novaSenha) {
             await updatePassword(user, novaSenha);
             console.log("Senha atualizada com sucesso!");

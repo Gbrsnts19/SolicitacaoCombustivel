@@ -97,12 +97,12 @@ button {
 
 button:hover {
     background-color: #003399;
-    transform: translateY(-3px); /* Elevação ao passar o mouse */
+    transform: translateY(-3px);
 }
 
 button:active {
     background-color: #002a73;
-    transform: translateY(0); /* Volta à posição original */
+    transform: translateY(0);
 }
 
 @media (max-width: 768px) {
@@ -115,7 +115,8 @@ button:active {
         font-size: 20px;
     }
 
-    input, button {
+    input,
+    button {
         font-size: 14px;
         padding: 10px;
     }

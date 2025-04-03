@@ -14,6 +14,8 @@ const db = getFirestore();
 const auth = getAuth();
 
 const tabelaBody = document.querySelector("#tabela-solicitacoes tbody");
+const modal = document.getElementById("emailModal");
+const closeModalButton = modal.querySelector(".close");
 
 onAuthStateChanged(auth, async (user) => {
     if (user) {
@@ -55,12 +57,27 @@ function adicionarLinhaNaTabela(dados) {
         <td>${dados.quantidade}</td>
         <td>${dados.km}</td>
         <td>${new Date(dados.dataHora).toLocaleString()}</td>
-        <td><button class="btn-download" data-pdf="${dados.pdf}">Download</button></td>
-    `;
+        <td>
+            <div class="btn-container">
+                <button class="btn-action btn-download" data-pdf="${dados.pdf}" title="Download">
+                    <i class="fas fa-download"></i>
+                </button>
+                <button class="btn-action btn-email" title="Enviar por E-mail">
+                    <i class="fas fa-envelope"></i>
+                </button>
+            </div>
+        </td>`;
     tabelaBody.appendChild(linha);
 
     const btnDownload = linha.querySelector(".btn-download");
     btnDownload.addEventListener("click", () => baixarPDF(dados.pdf, dados.numeroRequisicao));
+
+    const btnEmail = linha.querySelector(".btn-email");
+    btnEmail.addEventListener("click", () => abrirModal(dados.pdf));
+
+    const modal = document.getElementById("emailModal");
+    const closeModalButton = modal.querySelector(".close");
+    closeModalButton.addEventListener("click", fecharModal);
 }
 
 function baixarPDF(pdfBase64, numeroRequisicao) {
@@ -70,50 +87,101 @@ function baixarPDF(pdfBase64, numeroRequisicao) {
     link.click();
 }
 
+let pdfSelecionado = "";
+
+function abrirModal(pdf) {
+    console.log("Abrindo modal para o PDF:", pdf);
+    pdfSelecionado = pdf;
+    const modal = document.getElementById("emailModal");
+    modal.style.display = "block";
+}
+
+function fecharModal() {
+    modal.style.display = "none";
+}
+
+const emailForm = document.getElementById("emailForm");
+
+emailForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const destinatario = document.getElementById("destinatario").value.trim();
+    const assunto = "Relatório de Solicitação de Combustível";
+    const mensagem = "<p>Segue em anexo o relatório solicitado.</p>";
+    const nomeArquivo = "relatorio_solicitacao.pdf";
+
+    if (!pdfSelecionado) {
+        alert("Erro: PDF não selecionado.");
+        return;
+    }
+
+    try {
+        const base64SemPrefixo = pdfSelecionado.split(',')[1];
+
+        const response = await fetch("http://localhost:8080/api/email/send", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams({
+                destinatario,
+                assunto,
+                mensagem,
+                nomeArquivo,
+                pdfBase64: base64SemPrefixo
+            })
+        });
+
+        if (response.ok) {
+            alert("E-mail enviado com sucesso!");
+            fecharModal();
+        } else {
+            const texto = await response.text();
+            alert("Erro ao enviar e-mail: " + texto);
+        }
+    } catch (error) {
+        console.error("Erro na requisição:", error);
+        alert("Erro ao enviar e-mail.");
+    }
+});
+
 const tabela = document.querySelector("#tabela-solicitacoes");
 const cabecalhos = tabela.querySelectorAll("th[data-column]");
-let direcaoOrdenacao = 1; // 1 para crescente, -1 para decrescente
-let colunaAtiva = null; // Armazena a coluna atualmente ordenada
+let direcaoOrdenacao = 1;
+let colunaAtiva = null;
 
-// Função para ordenar a tabela
 function ordenarTabela(coluna, cabecalho) {
     const tbody = tabela.querySelector("tbody");
     const linhas = Array.from(tbody.rows);
 
-    // Alterna a direção da ordenação
     if (colunaAtiva === coluna) {
-        direcaoOrdenacao *= -1; // Inverte a direção
+        direcaoOrdenacao *= -1;
     } else {
-        direcaoOrdenacao = 1; // Padrão para crescente ao mudar de coluna
+        direcaoOrdenacao = 1;
         colunaAtiva = coluna;
     }
 
-    // Remove as classes de ordenação de todos os cabeçalhos
     cabecalhos.forEach((th) => th.classList.remove("ordenado-crescente", "ordenado-decrescente"));
 
-    // Adiciona a classe apropriada ao cabeçalho clicado
     if (direcaoOrdenacao === 1) {
         cabecalho.classList.add("ordenado-crescente");
     } else {
         cabecalho.classList.add("ordenado-decrescente");
     }
 
-    // Ordena as linhas com base na coluna clicada
     linhas.sort((a, b) => {
         const valorA = a.querySelector(`td:nth-child(${coluna + 1})`).innerText.trim();
         const valorB = b.querySelector(`td:nth-child(${coluna + 1})`).innerText.trim();
 
         if (!isNaN(valorA) && !isNaN(valorB)) {
-            return direcaoOrdenacao * (parseFloat(valorA) - parseFloat(valorB)); // Ordenação numérica
+            return direcaoOrdenacao * (parseFloat(valorA) - parseFloat(valorB));
         }
-        return direcaoOrdenacao * valorA.localeCompare(valorB); // Ordenação de strings
+        return direcaoOrdenacao * valorA.localeCompare(valorB);
     });
 
-    // Adiciona as linhas ordenadas de volta na tabela
     linhas.forEach((linha) => tbody.appendChild(linha));
 }
 
-// Adiciona o evento de clique nos cabeçalhos
 cabecalhos.forEach((cabecalho, index) => {
     cabecalho.addEventListener("click", () => ordenarTabela(index, cabecalho));
 });

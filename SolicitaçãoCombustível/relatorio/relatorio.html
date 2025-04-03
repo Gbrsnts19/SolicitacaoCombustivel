@@ -8,12 +8,15 @@
     <link rel="stylesheet" href="relatorio.css">
     <script type="module" src="../firebase/logout.js" defer></script>
     <script type="module" src="../script.js" defer></script>
+    <script type="module" src="../relatorio/relatorio.js" defer></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
     <header>
         <div class="left-options">
-            <a id="botao-solicitacao" href="/SolicitaçãoCombustível/solicitacao/solicitacao.html">Solicitação</a>
+            <a id="botao-solicitacao" href="/solicitacao/solicitacao.html">Solicitação</a>
             <a id="botao-relatorio" href="#">Relatório</a>
         </div>
         <div class="right-options">
@@ -50,13 +53,22 @@
                     <th data-column="dataHora">Data/Hora</th>
                     <th>PDF</th>
                 </tr>
-            </thead>          
+            </thead>
             <tbody>
             </tbody>
         </table>
     </div>
-
-    <script type="module" src="relatorio.js"></script>
+    <div id="emailModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Enviar PDF por E-mail</h2>
+            <form id="emailForm">
+                <label for="destinatario">E-mail do Destinatário:</label>
+                <input type="email" id="destinatario" name="destinatario" placeholder="Digite o e-mail" required>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

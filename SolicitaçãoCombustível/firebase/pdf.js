@@ -27,7 +27,6 @@ function gerarNumeroRequisicao() {
     return `${year}${month}${day}${hour}${minute}${second}`;
 }
 
-// Função para gerar o PDF e salvar os dados no Firebase
 async function gerarPDF() {
     let nomeFuncionario = document.getElementById('nome-condutor').value;
     let posto = document.getElementById('posto-gasolina').value;
@@ -93,20 +92,16 @@ async function gerarPDF() {
 
     doc.setFont("helvetica", "normal");
 
-    // Salvar PDF no navegador
     doc.save('solicitacao_combustivel.pdf');
 
-    // Gerar PDF em Base64
     const pdfBase64 = doc.output("datauristring");
 
-    // Obter usuário autenticado
     const user = auth.currentUser;
     if (!user) {
         alert("Usuário não autenticado!");
         return;
     }
 
-    // Salvar informações no Firebase
     try {
         await addDoc(collection(db, "solicitacoes"), {
             userId: user.uid,
@@ -126,9 +121,8 @@ async function gerarPDF() {
         console.log("Dados e PDF salvos com sucesso!");
     } catch (error) {
         console.error("Erro ao salvar os dados no Firebase:", error);
-        alert("Erro ao salvar os dados.");
+        alert("Não foi possível salvar a solicitação. Por favor, tente novamente mais tarde.");
     }
 }
 
-// Exponha a função para o escopo global
 window.gerarPDF = gerarPDF;

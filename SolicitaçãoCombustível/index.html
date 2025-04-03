@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <script type="module" src="firebase/cadastro.js" defer></script>
     <script type="module" src="firebase/login.js" defer></script>
 </head>
+
 <body>
     <div class="container" id="container-cadastro">
         <h2>Cadastro</h2>
@@ -19,7 +21,7 @@
         <button id="botao-cadastro">Cadastrar</button>
         <p>Já tem uma conta? <a href="#" onclick="mostrarLogin()">Faça login</a></p>
         <p><a href="#" id="esqueci-senha-link-cadastro">Esqueci minha senha</a></p>
-    </div>    
+    </div>
 
     <div class="container" id="container-login" style="display: none;">
         <h2>Login</h2>
@@ -29,7 +31,7 @@
         <p>Não tem conta? <a href="#" onclick="mostrarCadastro()">Cadastre-se</a></p>
         <p><a href="#" id="esqueci-senha-link-login">Esqueci minha senha</a></p>
     </div>
-    
+
     <div class="modal" id="modal-esqueci-senha-cadastro" style="display: none;">
         <div class="modal-content">
             <h3>Redefinir Senha</h3>
@@ -50,4 +52,5 @@
         </div>
     </div>
 </body>
+
 </html>

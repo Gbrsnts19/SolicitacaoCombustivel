@@ -110,7 +110,8 @@ header {
 .left-options,
 .right-options {
     display: flex;
-    gap: 20px; /* Espaço entre os links */
+    gap: 20px;
+    /* Espaço entre os links */
 }
 
 header a {
@@ -123,15 +124,17 @@ header a:hover {
     text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        text-align: center;
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
     }
 
-    .left-options,
-    .right-options {
-        flex-direction: column;
-        gap: 10px;
+    button {
+        font-size: 14px;
     }
+}
+
+label:after {
+    content: " *";
+    color: red;
 }
